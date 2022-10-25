@@ -2,7 +2,7 @@ class MotherAccount {
     protected saldo:number = 0;
     versamento(importo: number) {
         this.saldo += importo;
-        this.aggiungiIteresse();
+        this.aggiungiInteresse();
     }
     prelievo(importo: number) {
         if(this.saldo >= importo) {
@@ -14,17 +14,32 @@ class MotherAccount {
     stampaSaldo() {
         console.log(this.saldo);
     }
-    private aggiungiInteresse() {
+    aggiungiInteresse() {
         this.saldo += this.saldo*0,1;
     }
 
 }
 class SonAccount extends MotherAccount {
-    versamento(importo: number): void {
-        
+    versamento(importo: number) {
+        this.saldo += importo;
     }
 }
-
+let motherAccount = new MotherAccount();
+let sonAccount = new SonAccount();
+motherAccount.stampaSaldo();
+sonAccount.stampaSaldo();
+motherAccount.versamento(5000);
+sonAccount.versamento(1000);
+motherAccount.stampaSaldo();
+sonAccount.stampaSaldo();
+motherAccount.prelievo(6000);
+sonAccount.prelievo(3000);
+motherAccount.prelievo(2000);
+sonAccount.prelievo(500);
+motherAccount.stampaSaldo();
+sonAccount.stampaSaldo();
+motherAccount.aggiungiInteresse();
+motherAccount.stampaSaldo();
 
 
 

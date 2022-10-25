@@ -1,21 +1,51 @@
 "use strict";
-class Conto {
-    constructor(saldoAttuale, versamento, prelievo) {
-        this.saldoAttuale = saldoAttuale;
-        this.versamento = versamento;
-        this.prelievo = prelievo;
+class MotherAccount {
+    constructor() {
+        this.saldo = 0;
     }
-    getSaldoAttuale() {
-        return this.saldoAttuale;
+    versamento(importo) {
+        this.saldo += importo;
+        this.aggiungiIteresse();
     }
-    getVersamento() {
-        return this.versamento;
+    prelievo(importo) {
+        if (this.saldo >= importo) {
+            this.saldo -= importo;
+        }
+        else {
+            console.log("Non puoi prelevare!!!");
+        }
     }
-    getPrelievo() {
-        return this.prelievo;
+    stampaSaldo() {
+        console.log(this.saldo);
+    }
+    aggiungiInteresse() {
+        this.saldo += this.saldo * 0, 1;
     }
 }
-let figlio = new Conto(500, 0, 0);
-console.log(figlio);
-let madre = new Conto(5000, 1200, 500);
-console.log(madre);
+class SonAccount extends MotherAccount {
+    versamento(importo) {
+    }
+}
+// class Conto {
+//     private saldoAttuale: number; 
+//     private versamento: number;
+//     private prelievo: number; 
+//     constructor (saldoAttuale: number, versamento: number, prelievo: number ) {
+//         this.saldoAttuale = saldoAttuale;
+//         this.versamento = versamento;
+//         this.prelievo = prelievo;
+//     }
+//     public getSaldoAttuale(): number {
+//         return this.saldoAttuale;
+//     }
+//     public getVersamento(): number {
+//         return this.versamento;
+//     }
+//     public getPrelievo(): number {
+//         return this.prelievo;
+//     }
+// }
+// let figlio = new Conto(500, 0, 0)
+// console.log(figlio);
+// let madre = new Conto(5000, 1200, 500)
+// console.log(madre);
